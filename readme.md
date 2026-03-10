@@ -1,10 +1,4 @@
-# Enhanced Calculator Application – Module 5
-
-This repository contains a modular Python command-line calculator developed for the IS601 Module 5 assignment. The application demonstrates advanced software design patterns, persistent data management using pandas, environment-based configuration, and automated testing with continuous integration through GitHub Actions.
-
-The calculator runs in a Read–Eval–Print Loop (REPL) that allows users to continuously perform calculations and manage their history. It supports arithmetic operations including addition, subtraction, multiplication, division, exponentiation (power), and root calculations. The application includes undo and redo functionality using the Memento design pattern, observers for logging and automatic saving of calculation history, interchangeable operation strategies implemented through the Strategy pattern, object creation through a Factory pattern, and a simplified interface using a Facade-style Calculator class.
-
-Calculation history is stored and managed using pandas DataFrames and can be automatically saved to and loaded from CSV files. Application settings such as history size limits and auto-save behavior are controlled using environment variables loaded through python-dotenv.
+# Midterm Calculator Project
 
 ## Project Structure
 
