@@ -203,6 +203,24 @@ class TestModulus(BaseOperationTest):
         },
     }
 
+class TestIntegerDivision(BaseOperationTest):
+    """Test IntegerDivision operation."""
+
+    operation_class = IntegerDivision
+    valid_test_cases = {
+        "positive_numbers": {"a": "10", "b": "3", "expected": "3"},
+        "even_division": {"a": "12", "b": "4", "expected": "3"},
+        "negative_numbers": {"a": "-10", "b": "3", "expected": "-3"},
+    }
+    invalid_test_cases = {
+        "int_divide_by_zero": {
+            "a": "10",
+            "b": "0",
+            "error": ValidationError,
+            "message": "Integer division by zero is not allowed"
+        },
+    }
+
 class TestOperationFactory:
     """Test OperationFactory functionality."""
 
@@ -216,6 +234,7 @@ class TestOperationFactory:
             'power': Power,
             'root': Root,
             'modulus': Modulus,
+            'int_divide': IntegerDivision,
         }
 
         for op_name, op_class in operation_map.items():
