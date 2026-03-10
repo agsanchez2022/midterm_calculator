@@ -239,6 +239,18 @@ class TestPercentage(BaseOperationTest):
         },
     }
 
+class TestAbsoluteDifference(BaseOperationTest):
+    """Test AbsoluteDifference operation."""
+
+    operation_class = AbsoluteDifference
+    valid_test_cases = {
+        "positive_difference": {"a": "10", "b": "3", "expected": "7"},
+        "reverse_order": {"a": "3", "b": "10", "expected": "7"},
+        "same_numbers": {"a": "5", "b": "5", "expected": "0"},
+        "decimal_values": {"a": "5.5", "b": "3.2", "expected": "2.3"},
+    }
+    invalid_test_cases = {}
+
 class TestOperationFactory:
     """Test OperationFactory functionality."""
 
@@ -254,6 +266,7 @@ class TestOperationFactory:
             'modulus': Modulus,
             'int_divide': IntegerDivision,
             'percent': Percentage,
+            'abs_diff': AbsoluteDifference,
         }
 
         for op_name, op_class in operation_map.items():
