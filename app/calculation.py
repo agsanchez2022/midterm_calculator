@@ -65,7 +65,12 @@ class Calculation:
                 Decimal(pow(float(x), 1 / float(y))) 
                 if x >= 0 and y != 0 
                 else self._raise_invalid_root(x, y)
-            )
+            ),
+
+            "Modulus": lambda x, y: x % y if y != 0 else self._raise_mod_zero(),
+            "IntegerDivision": lambda x, y: x // y if y != 0 else self._raise_int_div_zero(),
+            "Percentage": lambda x, y: (x / y) * Decimal("100") if y != 0 else self._raise_percent_zero(),
+            "AbsoluteDifference": lambda x, y: abs(x - y),
         }
 
         # Retrieve the operation function based on the operation name
@@ -115,6 +120,18 @@ class Calculation:
         if x < 0:
             raise OperationError("Cannot calculate root of negative number")
         raise OperationError("Invalid root operation")
+
+    @staticmethod
+    def _raise_mod_zero():  # pragma: no cover
+        raise OperationError("Modulus by zero is not allowed")
+
+    @staticmethod
+    def _raise_int_div_zero():  # pragma: no cover
+        raise OperationError("Integer division by zero is not allowed")
+
+    @staticmethod
+    def _raise_percent_zero():  # pragma: no cover
+        raise OperationError("Cannot calculate percentage with divisor zero")
 
     def to_dict(self) -> Dict[str, Any]:
         """
