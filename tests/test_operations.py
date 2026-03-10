@@ -221,6 +221,24 @@ class TestIntegerDivision(BaseOperationTest):
         },
     }
 
+class TestPercentage(BaseOperationTest):
+    """Test Percentage operation."""
+
+    operation_class = Percentage
+    valid_test_cases = {
+        "half_of_value": {"a": "50", "b": "200", "expected": "25"},
+        "full_value": {"a": "100", "b": "100", "expected": "100"},
+        "decimal_percentage": {"a": "25", "b": "40", "expected": "62.5"},
+    }
+    invalid_test_cases = {
+        "percentage_divide_by_zero": {
+            "a": "10",
+            "b": "0",
+            "error": ValidationError,
+            "message": "Cannot calculate percentage with divisor zero"
+        },
+    }
+
 class TestOperationFactory:
     """Test OperationFactory functionality."""
 
@@ -235,6 +253,7 @@ class TestOperationFactory:
             'root': Root,
             'modulus': Modulus,
             'int_divide': IntegerDivision,
+            'percent': Percentage,
         }
 
         for op_name, op_class in operation_map.items():
